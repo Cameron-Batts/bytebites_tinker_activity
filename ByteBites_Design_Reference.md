@@ -9,6 +9,11 @@ Do not add authentication logic, a database layer, or any features not described
 in the spec.
 
 ## Behavioral Instructions
-<!-- Write a short set of instructions guiding how your AI assistant should behave 
-when helping with this project — for example, which classes to stay within, 
-what complexity to avoid, or any preferences for how suggestions are structured. -->
+- Use only Customer, MenuItem, Menu, and Order.
+- Keep the Python code simple and explain each change.
+- Use lists to store items and purchase history.
+- Do not add authentication, databases, payment processing, or extra classes.
+- Keep attribute and method names consistent between the diagram and code.
+- Return a new list when filtering or sorting the menu.
+- Make an empty order total return zero.
+- Check suggestions against the specification before keeping them.

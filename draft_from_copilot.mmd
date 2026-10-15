@@ -1,0 +1,29 @@
+classDiagram
+    class Customer {
+        +str name
+        +list purchase_history
+    }
+
+    class MenuItem {
+        +str name
+        +float price
+        +str category
+        +int popularity_rating
+    }
+
+    class Menu {
+        +list items
+        +add_item(item)
+        +filter_by_category(category) list
+        +sort_by_popularity() list
+    }
+
+    class Order {
+        +list items
+        +add_item(item)
+        +calculate_total() float
+    }
+
+    Customer --> Order : purchase history
+    Menu --> MenuItem : holds
+    Order --> MenuItem : contains
