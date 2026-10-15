@@ -22,21 +22,19 @@ Filtering and sorting return new lists without changing the original menu. Popul
 
 ## Setup
 
-Create a virtual environment:
+Create and activate a virtual environment on macOS:
 
-    python3 -m venv .venv
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-Activate it on macOS:
+Install pytest and run the tests:
 
-    source .venv/bin/activate
-
-Install pytest:
-
-    python -m pip install pytest
-
-Run the tests:
-
-    python -m pytest
+```bash
+python -m pip install pytest
+python -m pytest
+```
 
 ## Verification
 
@@ -49,3 +47,35 @@ Manual checks also confirmed that customer details and purchase history could be
 AI helped draft the class diagrams, class scaffolds, methods, and tests. I checked the results against the specification and ran manual examples and automated tests.
 
 The refined diagram kept the same four classes and clarified how customers relate to past orders and how menus and orders contain items. A syntax issue in the AI's first total-calculation suggestion was corrected before the manual checks passed.
+
+## Class Diagram
+
+The final design is in [bytebites_design.mmd](bytebites_design.mmd).
+
+```mermaid
+classDiagram
+    class Customer {
+        +str name
+        +list purchase_history
+    }
+    class MenuItem {
+        +str name
+        +float price
+        +str category
+        +int popularity_rating
+    }
+    class Menu {
+        +list items
+        +add_item(item) None
+        +filter_by_category(category) list
+        +sort_by_popularity() list
+    }
+    class Order {
+        +list items
+        +add_item(item) None
+        +calculate_total() float
+    }
+    Customer "1" --> "0..*" Order : purchase_history
+    Menu "1" --> "0..*" MenuItem : items
+    Order "1" --> "0..*" MenuItem : items
+```
