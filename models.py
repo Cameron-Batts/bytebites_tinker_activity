@@ -3,6 +3,7 @@
 # Menu holds items and supports filtering and sorting.
 # Order holds selected items and calculates their total.
 
+
 class Customer:
     def __init__(self, name):
         self.name = name
@@ -22,13 +23,19 @@ class Menu:
         self.items = []
 
     def add_item(self, item):
-        pass
+        self.items.append(item)
 
     def filter_by_category(self, category):
-        pass
+        # Return matching items without changing the menu.
+        return [item for item in self.items if item.category == category]
 
     def sort_by_popularity(self):
-        pass
+        # Return a new list with the most popular items first.
+        return sorted(
+            self.items,
+            key=lambda item: item.popularity_rating,
+            reverse=True,
+        )
 
 
 class Order:
@@ -36,7 +43,8 @@ class Order:
         self.items = []
 
     def add_item(self, item):
-        pass
+        self.items.append(item)
 
     def calculate_total(self):
-        pass
+        # An empty order returns 0.0.
+          return sum((item.price for item in self.items), start=0.0)
